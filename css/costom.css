@@ -1,0 +1,47 @@
+h1 {
+    padding-bottom: 20px;
+}
+
+h4 {
+    margin-left: 10px;
+}
+.jadwal {
+    margin: auto;
+    font-size: 15px;
+}
+
+@media (min-width:  480px) {
+  .jadwal {
+    padding-left: 5em;
+    padding-right: 5em;
+  }
+}
+
+.table-title{
+    padding-left: 5px;
+}
+
+.text-center th{
+    text-align: center;
+}
+.table>thead>tr>th {
+    border-bottom-color: skyblue;
+}
+.jam {
+    text-align: center;
+    font-weight: bold;
+    background-color: rgba(52, 152, 219,0.3)
+}
+
+.btn-tool {
+    text-align: left;
+    width: 100%;
+    margin-bottom: 16px;
+}
+.tool-wrapper {
+    margin-bottom: 36px;
+}
+
+.tool {
+    display: none;
+}
