@@ -18,18 +18,7 @@
 		$pass = strip_tags($pass);
 		$pass = htmlspecialchars($pass);
 		$pass = md5(md5(md5(md5(md5($pass)))));
-		// if (($kodeA=="iklc")&&($pass=="gakbolehtahu"))
-		// {
-		// 	$pesan_error = "seharusnya sudah login";
-		// 	$_SESSION['kodeA'] = "Admin";
-		// 	header("Location: admin.php");
-			
-		// }
-		// else
-		// {
-		// 	$pesan_error = "error login";
-		// }
-		if(!tryLogin($kodeA, $pass)) $pesan_error = "gagal";
+		if(!tryLogin($kodeA, $pass)) $pesan_error = "gagal".$pass;
 		else {
 			$_SESSION['kodeA'] = $kodeA;
 

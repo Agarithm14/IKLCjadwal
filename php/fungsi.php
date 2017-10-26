@@ -85,6 +85,7 @@ function checkRole($kodeA)
         0 = asisten
         1 = admin
     */
+    include 'connect.php';
     $sql = "SELECT role FROM asisten WHERE Kode = '$kodeA' ";
     $exec = mysqli_query($conn, $sql);
     $arr = mysqli_fetch_array($exec);

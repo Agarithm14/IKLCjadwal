@@ -19,3 +19,11 @@
     login bisa huruf kecil/besar
 
     fungsi log out
+    
+24/10/17
+    fungsi log out telah di buat
+    tambah asisten buat admin
+    
+    css buat fungsi log out
+    tambahkan auto logout
+    sqlnya belum untuk tambah asisten
