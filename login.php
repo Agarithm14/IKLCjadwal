@@ -5,6 +5,13 @@
 	echo '<link href="css/signin.css" rel="stylesheet">';
 	echo '<body>';
 
+	//if already signed in
+	if (isset($_SESSION['kodeA']))
+	{
+		header('Location: admin.php');
+		exit;
+	}
+
 	//init pesan error
 	$pesan_error = "";
 	if (isset($_POST['kodeA']))

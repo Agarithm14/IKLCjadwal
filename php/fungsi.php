@@ -22,7 +22,7 @@ function jadwal($week, $mode)
     include 'jadwalview/phpjadwal.php';
 }
 
-function insertupdate($num)
+function insertupdate($num,$kodeA,$role)
 {
     include 'connect.php';
 
@@ -47,12 +47,27 @@ function insertupdate($num)
     } else if ($con == 1) {
         $sql = "update " . $minggu . " set kode_kelas='" . $_POST["data"] . "' where hari=" . $_POST["hari"] . " and waktu =" . $_POST["jam"] . " and ruangan=" . $_POST['ruang'] . ";";
     } else {
+        if ($role==0)
+        {
+            $sql = "SELECT * FROM `asislab` WHERE kode_asis='$kodeA' and kode_matkul=".$_POST["kode_matkul"]." and grup=".$_POST["kode_grup"].";";
+            $tes = mysqli_query($conn, $sql);
+            if (!mysqli_num_rows($tes)) 
+            {
+                return "<script>alert('Tidak boleh menghapus jadwal praktikum lain')</script>";
+            }
+        }
         $sql = "DELETE FROM " . $minggu . " WHERE hari=" . $hari . " and waktu =" . $jam . " and ruangan=" . $ruang . ";";
     }
+    /*
     if (mysqli_query($conn, $sql))
         return true;
     else
         return true;
+    */
+    if (mysqli_query($conn, $sql))
+        return "";
+    else
+        return "<script>alert('gagal')</script>";
 }
 
 function checkLogin()

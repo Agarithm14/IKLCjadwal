@@ -6,7 +6,6 @@ echo '<body>';
 <div class="container-fluid jadwal">
     <h1 class="text-center">Jadwal Praktikum IKLC</h1>
     <div class="row">
-		<h1><small>tanggal 10 - 14 Juli 2017</small></h1>
         <div><?php jadwal(0,0);?></div>
     </div>
     <hr>

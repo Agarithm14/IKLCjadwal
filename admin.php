@@ -3,24 +3,23 @@ include 'head.php';
 
 //cek apakah udah login
 checkLogin();
-
+$role = $_SESSION['role'];
+$kodeA = $_SESSION["kodeA"];
 echo '<body>';
 //untuk sql update
 if (isset($_POST['kode']))
 {
-    if (insertupdate($_POST['kode']))
-        echo "<script>alert('test')</script>";
-    else 
-        echo "<script>alert('gagal :v')</script>";
+    echo insertupdate($_POST['kode'],$kodeA,$role);
     unset($_POST['kode']);
 }
 ?>
 <script src="js/jquery-3.1.1.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+<div class="test"></div>
 <div class="container-fluid jadwal">
-    <h1 class="text-center">Admin page <?php echo $_SESSION['kodeA'];?></h1>
     <div class="row">
-        <a href="logout.php" class="button button-lg">Logout</a>
+        <h1 class="text-center">Control Panel</h1>
+        <div>User : <?php echo $_SESSION['kodeA'];?> </div><a href="logout.php" class="btn btn-primary">Logout</a>
     </div>
     <div class="row">
         <h3>Minggu ini</h3>
@@ -105,13 +104,8 @@ for ($x = 1; $x <= 6; $x++) {
 </div>
 <script>
     $(document).ready(function(){
-        <?php
-            echo 'var ngajar = {';
-            $sql = mysqli_query($conn, "SELECT kode_matkul FROM matkul WHERE 1");
-            while ($row = mysqli_fetch_assoc($sql)) {
-                echo "<option value='" . $row["kode_matkul"] . "'>" . $row["kode_matkul"] . "</option>";
-            }
-        ?>
+        
+        
         $(".crud-jadwal").click(function(){
             var teks = $(this).attr('id');
             $("input:text").val( teks );
@@ -122,10 +116,15 @@ for ($x = 1; $x <= 6; $x++) {
             $("input:text").val( teks );
             document.forms["del-form"].submit();
         });
-        $("#kode_matkul").change(function() {
-            <?php //yang terubah buat variabel dropdown ?>
-        	$("#kode_grup").empty();
-        });
+        
+        //redundant
+        if (<?php echo $role; ?>===0)
+        {
+            $("#kode_grup").load("php/group.php?kode_matkul=" + $("#kode_matkul").val());
+            $("#kode_matkul").change(function() {
+                $("#kode_grup").load("php/group.php?kode_matkul=" + $("#kode_matkul").val());
+            });
+        }
     })
 </script>
 <?php
