@@ -5,7 +5,7 @@
     $jam = $row[0];
 
     //ambil data
-    for ($ruang = 0;$ruang < $ncol; $ruang++)
+    for ($nhari=0; $nhari<5; $nhari++)
     {
         $sql = "SELECT kode_matkul , grup from " .$tabel[$week] .
             " WHERE ruangan=" . $ruang . " AND waktu=" . $row["waktu"] .
@@ -21,26 +21,27 @@
             $id = $week . $nhari . $indexjam . $ruang;
 
             //nilai class
-            $class = "btn btn-default crud-jadwal";
+            $class = "btn crud-jadwal";
 
             //cek jika nilainya kosong, k parameter kondisi add/delete
             if (($val == NULL) || ($val == ' '))
             {
                 $k = 0;
-                $val = "<span class='glyphicon glyphicon-plus'></span>";
+                $val = "+";
+                $class = $class . " btn-primary";
                 $data_target = "#tambah-jadwal";
             }
             else {
                 $k = 1;
-                $class = $class . "  jadwal-del";
+                $class = $class . "  jadwal-del btn-danger";
                 $data_target = "#edit-jadwal";
             }
             $id = $id . $k;
 
             $attr = "type='button' id='$id' class='$class' data-toggle='modal' data-target='$data_target'";
-            $col[$ruang] = "<button " . $attr . " >" .  $val . "</button>";
+            $col[$nhari] = "<button " . $attr . " >" .  $val . "</button>";
         }
-        else $col[$ruang] = $val;
+        else $col[$nhari] = $val;
     }
 ?>
 
@@ -49,7 +50,7 @@
         <?php echo $jam ?>
     </td>
     <?php
-        for ($j = 0; $j < $ncol; $j++)
+        for ($j = 0; $j < 5; $j++)
         {
             
             echo "<td>";

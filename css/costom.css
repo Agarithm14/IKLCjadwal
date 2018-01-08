@@ -7,6 +7,9 @@ h4 {
 }
 .jadwal {
     margin: auto;
+}
+.jadwal-container {
+    margin: auto;
     font-size: 15px;
 }
 
@@ -43,9 +46,5 @@ h4 {
 }
 
 .tool {
-    display: none;
-}
-
-.hide {
     display: none;
 }

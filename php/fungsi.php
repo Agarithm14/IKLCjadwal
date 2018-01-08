@@ -49,9 +49,9 @@ function insertupdate($num,$kodeA,$role)
     } else {
         if ($role==0)
         {
-            $sql = "SELECT * FROM `asislab` WHERE kode_asis='$kodeA' and kode_matkul=".$_POST["kode_matkul"]." and grup=".$_POST["kode_grup"].";";
+            $sql = "SELECT * FROM `asislab` WHERE kode_asis='$kodeA' and kode_matkul='".$_POST["kode_matkul"]."' and grup=".$_POST["kode_grup"].";";
             $tes = mysqli_query($conn, $sql);
-            if (!mysqli_num_rows($tes)) 
+            if (mysqli_num_rows($tes)==0)
             {
                 return "<script>alert('Tidak boleh menghapus jadwal praktikum lain')</script>";
             }

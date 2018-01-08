@@ -8,27 +8,13 @@ $tabel = array("jadwal_lab","jadwal_lab2");
 
 
 //ncol = banyaknya column atau ruangan
-$ncol = 4;
-
+include dirname(__FILE__) . '\..\connect.php';
+$nruang = 8;
+$sql = "SELECT * from lab ORDER BY no_ruangan";
+$query_ruangan = mysqli_query($conn, $sql);
 //dari senin sampai jumat
-for ($nhari=0; $nhari<5; $nhari++)
+for ($ruang = 0;$ruang < $nruang; $ruang++)
 {
-    switch ($nhari) {
-        case 0:
-            $hari = 'Senin';
-            break;
-        case 1:
-            $hari = 'Selasa';
-            break;
-        case 2:
-            $hari = 'Rabu';
-            break;
-        case 3:
-            $hari = 'Kamis';
-            break;
-        case 4:
-            $hari = 'Jumat';
-            break;       
-    }
-    include 'tampilhari.php';
+    $nama_ruang = mysqli_fetch_assoc($query_ruangan);
+    include 'tampilruang.php';
 }

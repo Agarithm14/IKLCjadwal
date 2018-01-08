@@ -1,16 +1,8 @@
 <?php 
 		include 'head.php';
-
 	//costom css untuk sign in
 	echo '<link href="css/signin.css" rel="stylesheet">';
 	echo '<body>';
-
-	//if already signed in
-	if (isset($_SESSION['kodeA']))
-	{
-		header('Location: admin.php');
-		exit;
-	}
 
 	//init pesan error
 	$pesan_error = "";
@@ -24,9 +16,11 @@
 		$pass = trim($_POST['pass']);
 		$pass = strip_tags($pass);
 		$pass = htmlspecialchars($pass);
-		$pass = md5(md5(md5(md5(md5($pass)))));
-		if(!tryLogin($kodeA, $pass)) $pesan_error = "gagal".$pass;
+		$pass = md5($pass);
+		if(!tryLogin($kodeA, $pass)) $pesan_error = "gagal";
 		else {
+            $sql = "INSERT INTO tabel_log VALUES ('Telah login',NOW(),'$kodeA')";
+            $exec = mysqli_query($conn, $sql);
 			$_SESSION['kodeA'] = $kodeA;
 
 			//ambil role apa dia
@@ -34,9 +28,11 @@
 
 			//ke admin php
 			header("Location: admin.php");
+            
 		}
 	}
 ?>
+
 <div class="container">
 	<form class="form-signin" action="" method="post">
 		  <h2 class="form-signin-heading">Please sign in</h2>
@@ -50,6 +46,7 @@
 		    <input type="checkbox" value="remember-me"> <p>Remember me</p>
 		  </label>
 		  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+        </div>
 	</form>
 </div>
 

@@ -1,2 +1,0 @@
-# IKLCjadwal
-Sistem Penjadwalan IKLC

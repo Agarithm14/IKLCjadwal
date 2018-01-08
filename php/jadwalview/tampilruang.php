@@ -5,9 +5,9 @@
 include dirname(__FILE__) . '\..\connect.php';
 ?>
 
-<div class='col-sm-12 table-title'>
+<div class='col-sm-6 table-title'>
     <h4><b>
-        <?php echo $hari;?>
+        <?php echo 'Lab ' .  $nama_ruang["nama_ruangan"];?>
     </b></h4>
     <table class='table text-center table-condensed'>
         <thead class='text-center'>
@@ -15,28 +15,19 @@ include dirname(__FILE__) . '\..\connect.php';
                 Jam
             </th>
             <th>
-                Lab 1
+                Senin
             </th>
             <th>
-                Lab 2
+                Selasa
             </th>
             <th>
-                Lab 3
+                Rabu
             </th>
             <th>
-                Lab 4
+                Kamis
             </th>
             <th>
-                Lab 5
-            </th>
-            <th>
-                Lab 6
-            </th>
-            <th>
-                Lab 7
-            </th>
-            <th>
-                Lab 8
+                Jumat
             </th>
         </thead>
         <?php
